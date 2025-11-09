@@ -1,23 +1,24 @@
 
 # %% [markdown]
 ### 참조 문서
-- Docs: [htps://github.com/hiwylee/oci-openai](https://github.com/hiwylee/oci-openai)
-- Package: [oci-openai](https://pypi.org/project/oci-openai/)
-```
-uv add oci-openai
-```
-- .oci/config
-```
-[chicago]
-user=ocid1.user.oc1..aaaaaaaako3wzfspg42nzaakahk3pu5bga6xuepjlbn6xkkgzrcqulouvlwa
-fingerprint=b8:ee:17:5a:ed:c0:bb:e0:74:d1:7d:03:1f:bc:ca:8a
-tenancy=ocid1.tenancy.oc1..aaaaaaaas5w2k7l2uglcenr4f6rrhubphshvb66rrtz5enhfe7riwohgtnxq
-compartment=ocid1.compartment.oc1..aaaaaaaasdjez3jw6clkb5njb2jrntak4tsmq7mkvlblpl4x6rdgv3ak3egq
-#region=ap-osaka-1
-region=us-chicago-1
-key_file=/home/opc/.oci/oci_api_key.pem
-```
-
+# %% [markdown]
+### 참조 문서
+# - Docs: [htps://github.com/hiwylee/oci-openai](https://github.com/hiwylee/oci-openai)
+# - Package: [oci-openai](https://pypi.org/project/oci-openai/)
+# ```
+# uv add oci-openai
+# ```
+# - .env
+# ```
+# region=us-chicago-1
+# profile_name=chicago
+# compartment_id=ocid1.compartment.oc1..xlpl4x6rdgv3ak3egq
+# ```
+### 샐행 결과 html 로 변환
+# ```
+# uv add jupyter nbconvert 
+# uv run jupyter nbconvert --to html oci-openai.ipynb
+# ```
 
 # %%
 import os
@@ -60,8 +61,7 @@ models = [
 ]
 
 
-model = "google.gemini-2.5-pro"
-model = "meta.llama-4-scout-17b-16e-instruct"
+model = "xai.grok-4-fast-non-reasoning"
 completion = client.chat.completions.create(
     model=model,
     messages=[
@@ -79,7 +79,6 @@ import httpx
 from openai import OpenAI
 from oci_openai import OciUserPrincipalAuth
 
-model = "meta.llama-4-scout-17b-16e-instruct"
 # Example for OCI Data Science Model Deployment endpoint
 client = OpenAI(
     api_key="OCI",
@@ -95,14 +94,14 @@ response = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "Explain how to list all files in a directory using Python.",
+            "content": "오늘 AI news를 요약해줘?",
         },
     ],
 )
 print(response.model_dump_json())
 
 #%%
-rom langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI
 import httpx
 from oci_openai import OciUserPrincipalAuth
 import os

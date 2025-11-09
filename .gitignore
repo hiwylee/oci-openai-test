@@ -3,6 +3,7 @@ __pycache__
 
 /litellm
 
+.ipynb_checkpoints/
 
 pipelines/*
 !pipelines/.gitignore
